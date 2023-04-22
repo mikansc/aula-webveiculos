@@ -2,7 +2,7 @@ using WebVeiculos.Models;
 
 namespace WebVeiculos.Dtos
 {
-  public class VeiculoResponseDto
+  public class CarroResponseDto
   {
     public string MarcaModelo { get; set; }
     public string Marca { get; set; }
@@ -12,7 +12,7 @@ namespace WebVeiculos.Dtos
     public bool ehSeminovo { get; set; }
     public DateTime DataDaConsulta { get; set; }
 
-    public VeiculoResponseDto(Veiculo veiculo)
+    public CarroResponseDto(Carro veiculo)
     {
       Marca = veiculo.Marca;
       Modelo = veiculo.Modelo;
