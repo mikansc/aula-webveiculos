@@ -22,10 +22,22 @@ namespace WebVeiculos.Controllers
     }
 
     [HttpGet] // Ex: https://localhost:1234/api/carros
-    public ActionResult<List<CarroResponseDto>> GetAll()
+    public ActionResult<List<CarroResponseDto>> GetAll(
+      [FromQuery] string marca
+      )
     {
       // uso do _context interno para buscar os dados da tabela Carros
-      var carros = _context.Carros;
+      // filtrando os carros caso seja informado query param
+      var carros = new List<Carro>();
+      if (!string.IsNullOrEmpty(marca))
+      {
+        carros = _context.Carros.Where(c => c.Marca == marca).ToList();
+      }
+      else
+      {
+        carros = _context.Carros.ToList();
+      }
+
       var veiculosResponseDto = new List<CarroResponseDto>();
       foreach (var veiculo in carros)
       {
